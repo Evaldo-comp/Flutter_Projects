@@ -1,2 +1,2 @@
 # Flutter_Projects
-Um repositórios com projetos em Flutter. 
+Um repositório com projetos em Flutter. 
