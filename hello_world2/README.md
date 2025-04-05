@@ -4,13 +4,13 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Esse projeto implementa um botão que irá alterar a mensagem an tela.
+- Nesta aula será introduzido o conceito de mudança de estado Statefulwidget
 
-A few resources to get you started if this is your first Flutter project:
+Seguem alguns recursos para você se aprofundar um pouco mais
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Lab: Escreva seu primeiro App em Flutter](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para uma referência mais aprofundada, consulte a documentação oficial
+[Documentação](https://docs.flutter.dev/)
