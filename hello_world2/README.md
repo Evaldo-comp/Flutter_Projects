@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-Esse projeto implementa um botão que irá alterar a mensagem an tela.
+Esse projeto implementa um botão que irá alterar a mensagem na tela.
 - Nesta aula será introduzido o conceito de mudança de estado Statefulwidget
 
 Seguem alguns recursos para você se aprofundar um pouco mais
