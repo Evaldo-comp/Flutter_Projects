@@ -69,29 +69,55 @@ class _myAppState extends State<myApp> {
       theme:ThemeData.dark(),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
-        appBar: AppBar(title: Text('Meu app')),
+        appBar: AppBar(title: Text('Quiz flutter')),
         body: Center(
-          child: Column(
+          child: quizFinalizado ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                'Parabéns! Você terminou o quiz!',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 24)
+              ),
               SizedBox(height: 20),
-              Text(texto, 
-          style: TextStyle(   
-                  fontSize: 30, 
-                  color: Colors.blue
-                )
+              Text(
+                'Sua pontuação: $pontos/${perguntas.length}'
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: alterarTexto, 
-                child: Text('aperte-me')
+                onPressed: reiniciarQuiz,
+                child: Text('Recomeçar')
               )
             ],
-          ),
+          ) : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.network('link-da-imagem.com', width: 100, height: 100),
+              SizedBox(height: 20),
+              Text(
+                perguntas[perguntaAtual]['pergunta'],
+                textAlign: TextAlign.center
+              ),
+              SizedBox(height: 20),
+              ...perguntas[perguntaAtual]['opcoes'].map<Widget>((opcao) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: ElevatedButton(
+                    onPressed: mensagem == null ? () => verificarResposta(opcao) : null,
+                    child: Text(opcao)
+                  )
+                );
+              }).toList(),
+              SizedBox(height: 20),
+              if (mensagem != null)
+                Text(mensagem!),
+              SizedBox(height: 20),
+              Text('Pontuação: $pontos')
+            ],
+          )
         ),
       )
     );
-  }
-    
-  }
+  }    
+}
 
