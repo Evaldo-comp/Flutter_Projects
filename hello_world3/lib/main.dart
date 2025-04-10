@@ -1,60 +1,65 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(myApp());
+  runApp(MyApp());
 }
 
-// StatelessWidget não muda estado
-// StatefulWidget muda o estado
-class myApp extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
-  _myAppState createState() => _myAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _myAppState extends State<myApp> {
+class _MyAppState extends State<MyApp> {
+  // Lista de perguntas e respostas
   final List<Map<String, dynamic>> perguntas = [
     {
       'pergunta': 'Qual é a capital do Brasil?',
       'opcoes': ['São Paulo', 'Brasília', 'Rio de Janeiro'],
       'respostaCorreta': 'Brasília',
     },
+    // {
+    //   'pergunta': 'Quem criou o Flutter?',
+    //   'opcoes': ['Google', 'Apple', 'Microsoft'],
+    //   'respostaCorreta': 'Google',
+    // },
+    // {
+    //   'pergunta': 'Qual linguagem é usada no Flutter?',
+    //   'opcoes': ['Java', 'Kotlin', 'Dart'],
+    //   'respostaCorreta': 'Dart',
+    // },
   ];
-  //inicializa os valores do quiz
+
   int perguntaAtual = 0;
   int pontos = 0;
-  String? mensagem;
+  String? mensagem; // Feedback positivo ou negativo
   bool quizFinalizado = false;
 
-  //função que verifica a resposta
   void verificarResposta(String respostaEscolhida) {
     String respostaCorreta = perguntas[perguntaAtual]['respostaCorreta'];
 
     setState(() {
       if (respostaEscolhida == respostaCorreta) {
         pontos++;
-        mensagem = 'Resposta certa! +1';
+        mensagem = 'Resposta certa! +1 ponto';
       } else {
         mensagem = 'Resposta errada!';
       }
     });
-    //espera 2 segundos e passa para a próxima pergunta
 
-   Future.delayed(Duration(seconds: 2), () {
-    setState(() {
-      mensagem = null;
-      if(perguntaAtual < perguntas.length - 1){
-        perguntaAtual++;
-      } else {
-        quizFinalizado = true;
-      }
+    // Espera 2 segundos e passa para a próxima pergunta
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        mensagem = null;
+        if (perguntaAtual < perguntas.length - 1) {
+          perguntaAtual++;
+        } else {
+          quizFinalizado = true;
+        }
+      });
     });
-  });
-  }//fim do método anteior
+  }
 
-  
-
-  // método para reiniciar o quiz
-  void reiniciarQuiz(){
+  void reiniciarQuiz() {
     setState(() {
       perguntaAtual = 0;
       pontos = 0;
@@ -67,12 +72,16 @@ class _myAppState extends State<myApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      darkTheme: ThemeData.dark(),
       home: Scaffold(
-        appBar: AppBar(title: Text('Meu app')),
+        appBar: AppBar(
+          title: Text('Quiz Flutter'),
+          centerTitle: true,
+          backgroundColor: Colors.teal,
+        ),
         body: Center(
-          child: quizFinalizado?Column(
-             mainAxisAlignment: MainAxisAlignment.center,
+          child: quizFinalizado
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Parabéns! Você terminou o quiz!',
@@ -90,8 +99,9 @@ class _myAppState extends State<myApp> {
                       child: Text('Recomeçar'),
                     ),
                   ],
-          ):Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.network(
                       'https://flutter.dev/assets/flutter-logo-sharing.png',
@@ -128,9 +138,7 @@ class _myAppState extends State<myApp> {
                   ],
                 ),
         ),
-          ),
-           );
+      ),
+    );
   }
-    
-  }
-
+}
